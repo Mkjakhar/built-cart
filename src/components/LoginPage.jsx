@@ -1,5 +1,6 @@
 import React from "react";
 import pageLogo from "../assets/images/webp/page-logo.webp";
+import { Link } from "react-router-dom";
 const LoginPage = () => {
   return (
     <>
@@ -24,9 +25,11 @@ const LoginPage = () => {
                 className="text-black mt-4 sm:mt-7 text-[20px] md:text-[24px] 2xl:text-3xl bg-light-gray rounded-[20px] w-full outline-none placeholder:text-black font-normal py-3 px-6 md:py-4 sm:px-8"
                 placeholder="Password"
               />
-              <button className="w-full mt-5 sm:mt-9 text-center text-[24px] md:text-[30px] 2xl:text-4xl font-semibold p-3 sm:p-[18px] bg-primary text-white rounded-[20px]">
-                Login
-              </button>
+              <Link to="/dashboard">
+                <button className="w-full mt-5 sm:mt-9 text-center text-[24px] md:text-[30px] 2xl:text-4xl font-semibold p-3 sm:p-[18px] bg-primary text-white rounded-[20px] duration-300 hover:bg-transparent border border-transparent hover:border-primary">
+                  Login
+                </button>
+              </Link>
             </form>
           </div>
         </div>

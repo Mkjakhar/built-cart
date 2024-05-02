@@ -12,19 +12,26 @@ module.exports = {
       backgroundColor: {
         primary: "#FDC63A",
         "light-gray": "#D9D9D9",
+        dark: "#434444",
+        light: "#F5F5F5",
       },
       fontSize: {
         // xs: "10px",
         // sm: "12px",
         // md: "14px",
         // lg: "15px",
-        // xl: "17px",
-        "2xl": "26px",
+        "2xl": "24px",
         "3xl": "30px",
+        "3xxl": "32px",
         "4xl": "36px",
       },
       colors: {
         primary: "#FDC63A",
+        dark: "#434444",
+      },
+      boxShadow: {
+        base: " 0px 2px 4px 0px #74747440",
+        lg: " 0px 1px 4px 4px #96979754",
       },
     },
   },
