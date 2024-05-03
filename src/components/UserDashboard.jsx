@@ -1,15 +1,36 @@
 import React from "react";
 import { ChooseIcon } from "./common/Icons";
 import { userDashboardData } from "./common/Helper";
-
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 const UserDashboard = () => {
   return (
     <>
-      <div className="flex items-center ps-[10px] pb-16">
+      <div className="flex items-center ps-9 pb-16">
         <ChooseIcon />
-        <p className="text-2xl text-black font-medium ms-[14px]">Choose By</p>
+        <p className="text-2xl text-black font-medium ms-[14px] mr-6">
+          Choose By
+        </p>
+        <Select>
+          <SelectTrigger className="w-[277px]">
+            <SelectValue placeholder="Today" />
+          </SelectTrigger>
+          <SelectContent width="w-[277px]">
+            <SelectItem color="text-[#6E6E73]" value="Today">
+              Today
+            </SelectItem>
+            <SelectItem color="text-[#6E6E73]" value="Yesterday">
+              Yesterday
+            </SelectItem>
+          </SelectContent>
+        </Select>
       </div>
-      <div className="inline-grid grid-cols-2 gap-y-11 gap-x-[72px]">
+      <div className="inline-grid grid-cols-2 ps-7 gap-y-11 gap-x-[72px]">
         {userDashboardData.map((val, i) => (
           <div
             key={i}

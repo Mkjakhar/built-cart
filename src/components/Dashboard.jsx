@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import AdminNav from "./common/AdminNav";
 import AdminTabBtn from "./common/AdminTabBtn";
 import { IoMdHome } from "react-icons/io";
@@ -12,15 +12,20 @@ import {
 } from "./common/Icons";
 import UserDashboard from "./UserDashboard";
 import Orders from "./Orders";
+import OrderDetails from "./OrderDetails";
+import MyContext from "./context/MyContext";
+import OrderLogs from "./OrderLogs";
+import ExportOverlay from "./ExportOverlay";
 
 const Dashboard = () => {
   const [activeTab, setActiveTab] = useState("dashboard");
+  const { activeSubTab } = useContext(MyContext);
   return (
     <>
-      <section className="flex min-h-screen flex-col">
+      <section className="flex min-h-screen flex-col max-w-[1920px] mx-auto">
         <AdminNav />
-        <div className="flex flex-grow">
-          <div className="rounded-br-[30px] flex flex-col gap-[14px] w-full max-w-[265px] bg-dark pt-24 2xl:pt-32 pb-12">
+        <div className="flex flex-grow overflow-x-hidden">
+          <div className="rounded-br-[30px] flex flex-col gap-[14px] w-[265px] bg-dark pt-24 2xl:pt-32 pb-12">
             <AdminTabBtn
               btntext="Dashboard"
               icon={<IoMdHome className="text-2xl text-white" />}
@@ -64,16 +69,31 @@ const Dashboard = () => {
               activeTab={activeTab === "complaints"}
             />
           </div>
-          <div className="pt-10 ps-7 w-full">
+          <div className="pt-10 w-full">
             {activeTab === "dashboard" ? (
               <UserDashboard />
             ) : activeTab === "orders" ? (
-              <Orders />
-            ) : activeTab === "settings" ? (
-              <UserSettings />
+              activeSubTab === "order-details" ? (
+                <OrderDetails
+                  status="Pending"
+                  style="after:bg-[#FF3D00] text-[#FF3D00]"
+                />
+              ) : (
+                <Orders />
+              )
+            ) : activeTab === "order-logs" ? (
+              activeSubTab === "order-details" ? (
+                <OrderDetails
+                  status="Delivered"
+                  style="after:bg-[#0FB001] text-[#0FB001]"
+                />
+              ) : (
+                <OrderLogs />
+              )
             ) : null}
           </div>
         </div>
+        <ExportOverlay />
       </section>
     </>
   );
