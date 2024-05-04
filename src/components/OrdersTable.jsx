@@ -8,7 +8,7 @@ const OrdersTable = () => {
   const { setActiveSubTab } = useContext(MyContext);
   return (
     <>
-      <div className="overflow-auto w-[calc(100%-265px)] hide_scroll">
+      <div className="overflow-auto hide_scroll">
         <div className="w-[2370px]">
           <div className="bg-[#BDBDBD] h-16 flex items-center">
             <div className="px-[54px]">

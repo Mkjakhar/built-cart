@@ -45,10 +45,6 @@ module.exports = {
         light: "#F5F5F5",
       },
       fontSize: {
-        // xs: "10px",
-        // sm: "12px",
-        // md: "14px",
-        // lg: "15px",
         "2xl": "24px",
         "3xl": "30px",
         "3xxl": "32px",
