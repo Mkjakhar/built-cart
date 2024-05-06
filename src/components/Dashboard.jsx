@@ -28,7 +28,7 @@ const Dashboard = () => {
         <AdminNav />
         <div className="flex flex-grow overflow-x-hidden">
           <DashboardSideBar />
-          <div className="pt-10 w-[calc(100vw-265px)] h-[calc(100vh-99px)] overflow-auto">
+          <div className="pt-10 w-[calc(100vw-265px)] min-[1920px]:w-[calc(1920px-265px)] h-[calc(100vh-99px)] overflow-auto">
             {activeTab === "dashboard" ? (
               <UserDashboard />
             ) : activeTab === "orders" ? (

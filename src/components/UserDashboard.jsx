@@ -30,7 +30,7 @@ const UserDashboard = () => {
           </SelectContent>
         </Select>
       </div>
-      <div className="inline-grid grid-cols-2 ps-7 gap-y-11 gap-x-[72px]">
+      <div className="inline-grid grid-cols-2 ps-7 gap-y-11 gap-x-[72px] pb-10">
         {userDashboardData.map((val, i) => (
           <div
             key={i}

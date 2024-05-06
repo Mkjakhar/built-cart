@@ -13,6 +13,8 @@ import OrderLogTable from "./OrderLogTable";
 import MyContext from "./context/MyContext";
 const OrderLogs = () => {
   const { showExport, setShowExport } = useContext(MyContext);
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
     <>
       <div className="w-full">
@@ -41,18 +43,6 @@ const OrderLogs = () => {
                   <SelectValue placeholder="Status" />
                 </SelectTrigger>
                 <SelectContent width="w-[191px]">
-                  <SelectItem color="text-[#FF3D00]" value="Pending">
-                    Pending
-                  </SelectItem>
-                  <SelectItem color="text-[#686868]" value="Accepted">
-                    Accepted
-                  </SelectItem>
-                  <SelectItem color="text-[#0E39D1]" value="Packed">
-                    Packed
-                  </SelectItem>
-                  <SelectItem color="text-[#FDC63A]" value="Dispatched">
-                    Dispatched
-                  </SelectItem>
                   <SelectItem color="text-[#0FA958]" value="Delivered">
                     Delivered
                   </SelectItem>

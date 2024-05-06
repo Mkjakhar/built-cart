@@ -97,15 +97,17 @@ const AddProduct = () => {
         </form>
         <div className="flex items-center gap-7 mt-12">
           <label className="inline-flex items-center">
-            <input
-              type="checkbox"
-              className="peer h-7 w-7 border border-[#282828] rounded transition-colors duration-150 ease-in-out"
-              checked={isChecked}
-              onChange={() => setIsChecked(!isChecked)}
-            />
-            <span className="absolute bg-white w-7 h-7 border border-[#282828] flex items-center justify-center">
-              {isChecked && <Check className=" text-sm text-[#0FB001]" />}
-            </span>
+            <div className="relative inline-block">
+              <input
+                type="checkbox"
+                className="peer h-7 w-7 border border-[#282828] rounded transition-colors duration-150 ease-in-out"
+                checked={isChecked}
+                onChange={() => setIsChecked(!isChecked)}
+              />
+              <span className="absolute bg-white w-7 h-7 border inset-0 border-[#282828] flex items-center justify-center">
+                {isChecked && <Check className=" text-sm text-[#0FB001]" />}
+              </span>
+            </div>
             <span className="ml-4 text-2xl leading-5 text-[#0028B7] font-normal">
               Add Product with different Colour Variants
             </span>

@@ -1,5 +1,5 @@
-import React from "react";
-import { CalendarTwoIcon } from "./common/Icons";
+import React, { useState } from "react";
+import { CalendarTwoIcon, DownArrowIcon } from "./common/Icons";
 import {
   Select,
   SelectContent,
@@ -8,6 +8,18 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 const OffersPage = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [selectedOption, setSelectedOption] = useState("Choose Location");
+  const options = ["Option 1", "Option 2", "Option 3"];
+
+  const toggleDropdown = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const handleOptionClick = (option) => {
+    setSelectedOption(option);
+    setIsOpen(false);
+  };
   return (
     <>
       <div className="w-full">
@@ -93,7 +105,7 @@ const OffersPage = () => {
                 ></textarea>
               </div>
             </div>
-            <div className="w-full">
+            <div className="w-full overflow-hidden">
               <p className="text-[28px] font-medium text-black">
                 Select Criteria
               </p>
@@ -144,7 +156,7 @@ const OffersPage = () => {
               <p className="text-2xl font-medium text-black mb-4">
                 Select State
               </p>
-              <Select>
+              {/* <Select>
                 <SelectTrigger className="w-[401px]">
                   <SelectValue placeholder="Choose Location" />
                 </SelectTrigger>
@@ -159,7 +171,30 @@ const OffersPage = () => {
                     Maharashtra
                   </SelectItem>
                 </SelectContent>
-              </Select>
+              </Select> */}
+              <div className="relative">
+                <div
+                  className="border border-spacing-[0.5px] flex text-2xl w-[401px] font-medium h-[63px] text-[#6E6E73] justify-between items-center pl-[18px] pr-8 border-[#6E6E73] p-2 rounded-[10px] cursor-pointer"
+                  onClick={toggleDropdown}
+                >
+                  {selectedOption}
+
+                  <DownArrowIcon />
+                </div>
+                {isOpen && (
+                  <div className="absolute z-10 bg-white border-t-0 top-[52px] rounded-t-none border border-spacing-[0.5px] rounded-[10px] border-[#6E6E73] mt-1 py-1 w-[401px]">
+                    {options.map((option, index) => (
+                      <div
+                        key={index}
+                        className="px-4 py-2 cursor-pointer text-2xl font-medium text-[#6E6E73]"
+                        onClick={() => handleOptionClick(option)}
+                      >
+                        {option}
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
               <div className="mt-[50px] flex flex-col">
                 <label
                   htmlFor="total-beneficiaries"

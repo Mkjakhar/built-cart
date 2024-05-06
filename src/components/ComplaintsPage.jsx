@@ -33,14 +33,11 @@ const ComplaintsPage = () => {
                 <SelectValue placeholder="Update Status" />
               </SelectTrigger>
               <SelectContent width="w-[277px]">
-                <SelectItem color="text-[#0E39D1]" value="Packed">
-                  Packed
+                <SelectItem color="text-[#0FA958]" value="Resolved">
+                  Resolved
                 </SelectItem>
-                <SelectItem color="text-[#FDC63A]" value="Dispatched">
-                  Dispatched
-                </SelectItem>
-                <SelectItem color="text-[#0FA958]" value="Delivered">
-                  Delivered
+                <SelectItem color="text-[#FF3D00]" value="Pending">
+                  Pending
                 </SelectItem>
               </SelectContent>
             </Select>
