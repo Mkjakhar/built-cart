@@ -55,6 +55,7 @@ module.exports = {
         dark: "#434444",
       },
       boxShadow: {
+        sm: "0px 2px 4px 0px #00000040",
         base: " 0px 2px 4px 0px #74747440",
         lg: " 0px 1px 4px 4px #96979754",
       },

@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { IoSearchSharp } from "react-icons/io5";
 import CommonBtn from "./common/CommonBtn";
 import ProductDetailsTables from "./ProductDetailsTable";
+import MyContext from "./context/MyContext";
 const ProductDetails = () => {
+  const { setActiveSubTab } = useContext(MyContext);
   return (
     <>
       <div className="w-full">
@@ -21,7 +23,10 @@ const ProductDetails = () => {
             </div>
           </div>
           <div className="flex items-center gap-6 2xl:gap-[30px]">
-            <button className="py-5 w-[224px] text-center duration-200 border border-transparent hover:border-current hover:bg-transparent hover:text-current leading-5 text-2xl font-medium px-6 rounded-[10px] bg-[#0028B7] text-white">
+            <button
+              onClick={() => setActiveSubTab("add-products")}
+              className="py-5 w-[224px] text-center duration-200 border border-transparent hover:border-current hover:bg-transparent hover:text-current leading-5 text-2xl font-medium px-6 rounded-[10px] bg-[#0028B7] text-white"
+            >
               Add Product
             </button>
             <CommonBtn

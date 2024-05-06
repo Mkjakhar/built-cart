@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import AdminNav from "./common/AdminNav";
 
 import UserDashboard from "./UserDashboard";
@@ -12,16 +12,23 @@ import UserDataPage from "./UserDataPage";
 import UserDetails from "./UserDetails";
 import CategoriesPage from "./CategoriesPage";
 import ProductDetails from "./ProductDetails";
+import AddProduct from "./AddProduct";
+import ComplaintsPage from "./ComplaintsPage";
+import OffersPage from "./OffersPage";
 
 const Dashboard = () => {
   const { activeSubTab, activeTab } = useContext(MyContext);
+  useEffect(() => {
+    scrollTo(0, 0);
+  }, [activeTab]);
+
   return (
     <>
-      <section className="flex min-h-screen flex-col max-w-[1920px] mx-auto">
+      <section className="flex min-h-screen flex-col max-w-[1920px] mx-auto overflow-hidden">
         <AdminNav />
         <div className="flex flex-grow overflow-x-hidden">
           <DashboardSideBar />
-          <div className="pt-10 w-[calc(100vw-265px)]">
+          <div className="pt-10 w-[calc(100vw-265px)] h-[calc(100vh-99px)] overflow-auto">
             {activeTab === "dashboard" ? (
               <UserDashboard />
             ) : activeTab === "orders" ? (
@@ -51,9 +58,15 @@ const Dashboard = () => {
             ) : activeTab === "categories" ? (
               activeSubTab === "categories-products" ? (
                 <ProductDetails />
+              ) : activeSubTab === "add-products" ? (
+                <AddProduct />
               ) : (
                 <CategoriesPage />
               )
+            ) : activeTab === "complaints" ? (
+              <ComplaintsPage />
+            ) : activeTab === "offers" ? (
+              <OffersPage />
             ) : null}
           </div>
         </div>
