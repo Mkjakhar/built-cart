@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { IoArrowBack } from "react-icons/io5";
 import MyContext from "./context/MyContext";
 
-const OrderDetails = (props) => {
+const OrderLogsDetails = (props) => {
   const { setActiveSubTab } = useContext(MyContext);
   return (
     <>
@@ -108,7 +108,9 @@ const OrderDetails = (props) => {
               ></textarea>
             </div>
           </div>
-          <p className="text-[26px] font-semibold text-black mb-5">Products</p>
+          <p className="text-[26px] font-semibold text-black mb-5">
+            Products Ordered
+          </p>
           <div className="flex gap-6 justify-between">
             <div className="flex flex-col w-full max-w-[396px]">
               <label
@@ -123,6 +125,20 @@ const OrderDetails = (props) => {
                 className="border border-black text-2xl font-normal text-black placeholder:text-black px-5 w-full h-[62px] rounded-[10px] bg-transparent outline-none"
               />
             </div>
+
+            <div className="flex flex-col w-full max-w-[396px]">
+              <label
+                htmlFor="Price"
+                className="text-2xl font-normal text-black mb-2"
+              >
+                Total Price
+              </label>
+              <input
+                id="Price"
+                type="number"
+                className="border border-black text-2xl font-normal text-black placeholder:text-black px-5 w-full h-[62px] rounded-[10px] bg-transparent outline-none"
+              />
+            </div>
             <div className="flex flex-col w-full max-w-[396px]">
               <label
                 htmlFor="Quantity"
@@ -132,19 +148,6 @@ const OrderDetails = (props) => {
               </label>
               <input
                 id="Quantity"
-                type="number"
-                className="border border-black text-2xl font-normal text-black placeholder:text-black px-5 w-full h-[62px] rounded-[10px] bg-transparent outline-none"
-              />
-            </div>
-            <div className="flex flex-col w-full max-w-[396px]">
-              <label
-                htmlFor="Price"
-                className="text-2xl font-normal text-black mb-2"
-              >
-                Price
-              </label>
-              <input
-                id="Price"
                 type="number"
                 className="border border-black text-2xl font-normal text-black placeholder:text-black px-5 w-full h-[62px] rounded-[10px] bg-transparent outline-none"
               />
@@ -169,4 +172,4 @@ const OrderDetails = (props) => {
   );
 };
 
-export default OrderDetails;
+export default OrderLogsDetails;

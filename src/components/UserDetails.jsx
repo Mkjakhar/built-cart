@@ -16,7 +16,7 @@ const UserDetails = () => {
             onClick={() => setActiveSubTab(null)}
             className="flex items-center gap-4"
           >
-            <IoArrowBack className="text-[31px]" />
+            <IoArrowBack className="text-[50px]" />
             <p className="text-3xxl text-black font-semibold">Kiran(User)</p>
           </div>
           <CommonBtn

@@ -8,13 +8,13 @@ const ProductDetails = () => {
   return (
     <>
       <div className="w-full">
-        <p className="text-4xl ps-7 font-bold text-black leading-[80%] mb-[31px]">
+        <p className="text-4xl ps-7 font-bold text-black leading-[80%] mb-[62px]">
           Tiles
         </p>
         <div className="flex items-center ps-7 mb-10 gap-3 justify-between pr-8 hide_scroll overflow-auto">
           <div>
             <div className="flex items-center gap-[10px] me-4 max-h-[62px] border w-[432px] border-black rounded-[10px] px-[13px]">
-              <IoSearchSharp className="text-dark text-[26px]" />
+              <IoSearchSharp className="text-dark text-[28px]" />
               <input
                 type="text"
                 placeholder="Search Name, Location..."

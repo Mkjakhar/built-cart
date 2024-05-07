@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { CalendarIcon, CloseIcon, DownArrowIcon } from "./common/Icons";
 import {
   Select,
@@ -10,6 +10,26 @@ import {
 import MyContext from "./context/MyContext";
 const ExportOverlay = () => {
   const { showExport, setShowExport } = useContext(MyContext);
+  const [status, setStatus] = useState("export");
+  const handleClick = () => {
+    if (status === "export") {
+      setStatus("exported");
+      setTimeout(() => {
+        setStatus("done");
+      }, 1000);
+    } else if (status === "done") {
+      onComplete();
+    }
+  };
+
+  const onComplete = () => {
+    setShowExport(false);
+    setStatus("export");
+  };
+  const closeOverlay = () => {
+    setShowExport(!showExport);
+    setStatus("export");
+  };
   return (
     <>
       <div
@@ -19,15 +39,9 @@ const ExportOverlay = () => {
             : "opacity-0 pointer-events-none"
         }`}
       >
-        <div
-          onClick={() => setShowExport(!showExport)}
-          className="fixed inset-0"
-        ></div>
+        <div onClick={closeOverlay} className="fixed inset-0"></div>
         <div className="px-7 py-6 rounded-[30px] bg-white relative">
-          <button
-            onClick={() => setShowExport(!showExport)}
-            className="absolute top-5 right-8"
-          >
+          <button onClick={closeOverlay} className="absolute top-5 right-8">
             <CloseIcon />
           </button>
           <p className="text-2xl font-semibold text-black mb-9">Export Files</p>
@@ -73,8 +87,21 @@ const ExportOverlay = () => {
                 </SelectItem>
               </SelectContent>
             </Select>
-            <button className="w-full text-center p-4 bg-[#FDC63A] rounded-[10px] mt-[50px] text-xl text-white font-semibold">
-              Export
+            <button
+              onClick={handleClick}
+              className={`w-full text-center p-4 border border-transparent duration-200 rounded-[10px] mt-[50px] text-xl font-semibold ${
+                status === "export" ? "bg-[#FDC63A] text-white" : ""
+              } ${
+                status === "exported"
+                  ? "bg-transparent !border-[#686868] text-[#686868]"
+                  : ""
+              } ${status === "done" ? "bg-[#0FB001] text-white" : ""}`}
+            >
+              {status === "done"
+                ? "Done"
+                : status === "exported"
+                ? "File Exported"
+                : "Export"}
             </button>
           </div>
         </div>

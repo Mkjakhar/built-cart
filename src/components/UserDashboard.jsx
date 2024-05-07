@@ -14,7 +14,7 @@ const UserDashboard = () => {
       <div className="flex items-center ps-9 pb-16">
         <ChooseIcon />
         <p className="text-2xl text-black font-medium ms-[14px] mr-6">
-          <a href="#move">Choose By</a>
+          Choose By
         </p>
         <Select>
           <SelectTrigger className="w-[277px]">

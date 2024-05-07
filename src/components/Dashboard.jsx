@@ -15,6 +15,7 @@ import ProductDetails from "./ProductDetails";
 import AddProduct from "./AddProduct";
 import ComplaintsPage from "./ComplaintsPage";
 import OffersPage from "./OffersPage";
+import OrderLogsDetails from "./OrderLogsDetails";
 
 const Dashboard = () => {
   const { activeSubTab, activeTab } = useContext(MyContext);
@@ -24,9 +25,9 @@ const Dashboard = () => {
 
   return (
     <>
-      <section className="flex min-h-screen flex-col max-w-[1920px] mx-auto overflow-hidden">
+      <section className="flex min-h-screen flex-col overflow-hidden">
         <AdminNav />
-        <div className="flex flex-grow overflow-x-hidden">
+        <div className="flex flex-grow overflow-x-hidden max-w-[1920px] mx-auto">
           <DashboardSideBar />
           <div className="pt-10 w-[calc(100vw-265px)] min-[1920px]:w-[calc(1920px-265px)] h-[calc(100vh-99px)] overflow-auto">
             {activeTab === "dashboard" ? (
@@ -42,7 +43,7 @@ const Dashboard = () => {
               )
             ) : activeTab === "order-logs" ? (
               activeSubTab === "order-details" ? (
-                <OrderDetails
+                <OrderLogsDetails
                   status="Delivered"
                   style="after:bg-[#0FB001] text-[#0FB001]"
                 />

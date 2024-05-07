@@ -59,7 +59,7 @@ const CategoriesTable = () => {
 
               <p
                 onClick={() => setActiveSubTab("categories-products")}
-                className="font-medium underline text-nowrap pl-6 w-[270px] text-2xl leading-5 text-[#0028B7]"
+                className="font-medium cursor-pointer underline text-nowrap pl-6 w-[270px] text-2xl leading-5 text-[#0028B7]"
               >
                 {val.products}
               </p>

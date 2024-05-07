@@ -65,7 +65,7 @@ const OrdersTable = () => {
               </p>
               <p
                 onClick={() => setActiveSubTab("order-details")}
-                className="font-medium underline text-nowrap pl-6 w-[232px] text-2xl leading-5 text-dark"
+                className="font-medium underline cursor-pointer text-nowrap pl-6 w-[232px] text-2xl leading-5 text-dark"
               >
                 {val.id}
               </p>

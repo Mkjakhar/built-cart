@@ -25,7 +25,7 @@ const AddProduct = () => {
             onClick={() => setActiveSubTab(null)}
             className="flex items-center gap-4"
           >
-            <IoArrowBack className="text-[31px]" />
+            <IoArrowBack className="text-[50px]" />
             <p className="text-3xxl text-black font-semibold">Add Product</p>
           </div>
           <CommonBtn
@@ -121,11 +121,11 @@ const AddProduct = () => {
             </button>
           )}
         </div>
-        <div className="mt-11">
+        <div>
           {isChecked ? (
             variants ? (
               <>
-                <div className="flex gap-6 2xl:gap-9 w-[95%]">
+                <div className="flex gap-6 2xl:gap-9 w-[95%] mt-8">
                   <div className="border border-black rounded-[30px] py-6 w-full 2xl:py-[30px] px-8 2xl:px-10">
                     <div className="flex flex-col w-full max-w-[396px] mb-5">
                       <label
@@ -162,7 +162,7 @@ const AddProduct = () => {
               </>
             ) : (
               <>
-                <div className="ml-11">
+                <div className="ml-11 mt-6">
                   <p className="text-base text-black font-normal mb-3">
                     Add number of variants you want to add
                   </p>
@@ -193,7 +193,7 @@ const AddProduct = () => {
               </>
             )
           ) : (
-            <div className="w-[46%]">
+            <div className="w-[41%] mt-11">
               <AddPics />
             </div>
           )}

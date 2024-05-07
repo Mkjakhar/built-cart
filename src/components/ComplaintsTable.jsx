@@ -53,7 +53,7 @@ const ComplaintsTable = () => {
               <p className="font-medium py-5 pl-6 w-[178px] text-nowrap text-2xl leading-5 text-[#282828]">
                 {val.date}
               </p>
-              <p className="font-medium py-5 pl-6 w-[232px] text-nowrap text-2xl leading-5 text-[#282828]">
+              <p className="font-medium underline py-5 pl-6 w-[232px] text-nowrap text-2xl leading-5 text-[#282828]">
                 {val.id}
               </p>
               <p className="font-medium py-5 pl-6 w-[204px] text-nowrap text-2xl leading-5 text-[#282828]">
@@ -65,8 +65,10 @@ const ComplaintsTable = () => {
               <p className="font-medium py-5 text-nowrap pl-6 w-[204px] text-2xl leading-5 text-[#282828]">
                 {val.items}
               </p>
-              <div className="w-[276px] border p-2 border-spacing-[0.5px] h-[90px] rounded-[10px] border-black">
-                {val.complaints}
+              <div className="w-[276px] pl-6">
+                <div className="w-[233px] border p-2 border-spacing-[0.5px] h-[90px] rounded-[10px] border-black">
+                  {val.complaints}
+                </div>
               </div>
               <p
                 className={`font-medium py-5 text-nowrap pl-6 w-[276px] text-2xl leading-5 ${

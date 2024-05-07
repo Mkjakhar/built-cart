@@ -31,7 +31,7 @@ const CategoriesPage = () => {
         </div>
         <div className="flex items-center ps-7 mb-10 gap-3 justify-between pr-8">
           <div className="flex items-center gap-[10px] me-4 max-h-[62px] border w-[432px] border-black rounded-[10px] px-[13px]">
-            <IoSearchSharp className="text-dark text-[26px]" />
+            <IoSearchSharp className="text-dark text-[28px]" />
             <input
               type="text"
               placeholder="Search Name, Location..."

@@ -54,7 +54,7 @@ const UserDataTable = () => {
               </p>
               <p
                 onClick={() => setActiveSubTab("user-details")}
-                className="font-medium underline text-nowrap pl-6 w-[204px] text-2xl leading-5 text-[#282828]"
+                className="font-medium cursor-pointer underline text-nowrap pl-6 w-[204px] text-2xl leading-5 text-[#282828]"
               >
                 {val.user}
               </p>
