@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { IoSearchSharp } from "react-icons/io5";
 import {
   Select,
@@ -13,6 +13,7 @@ import OrdersTable from "./OrdersTable";
 import MyContext from "./context/MyContext";
 const Orders = () => {
   const { showExport, setShowExport } = useContext(MyContext);
+  const [accept, setAccept] = useState(false);
   return (
     <>
       <div className="w-full">
@@ -75,8 +76,13 @@ const Orders = () => {
               </SelectContent>
             </Select>
             <CommonBtn
-              style="text-white bg-[#0FB001] hover:bg-transparent hover:text-[#0FB001]"
-              btntext="Accept"
+              clickEvent={() => setAccept(true)}
+              style={
+                accept
+                  ? "text-[#6E6E73] bg-transparent border-[#0FB001] hover:border-[#0FB001]"
+                  : "text-white bg-[#0FB001] hover:bg-transparent hover:text-[#0FB001]"
+              }
+              btntext={accept ? "Accepted" : "Accept"}
             />
             <CommonBtn
               style="text-white bg-[#FF3D00] hover:bg-transparent hover:text-[#FF3D00]"

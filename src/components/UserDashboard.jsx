@@ -1,6 +1,8 @@
 import React from "react";
 import { ChooseIcon } from "./common/Icons";
 import { userDashboardData } from "./common/Helper";
+import { FaCheck } from "react-icons/fa";
+import { ImCross } from "react-icons/im";
 import {
   Select,
   SelectContent,
@@ -8,12 +10,22 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const UserDashboard = () => {
+  const showToastMessage = () => {
+    toast.success("Success Notification !", {
+      className: "rounded-[10px]",
+    });
+  };
   return (
     <>
       <div className="flex items-center ps-9 pb-16">
         <ChooseIcon />
-        <p className="text-2xl text-black font-medium ms-[14px] mr-6">
+        <p
+          onClick={showToastMessage}
+          className="text-2xl text-black font-medium ms-[14px] mr-6"
+        >
           Choose By
         </p>
         <Select>
@@ -21,11 +33,26 @@ const UserDashboard = () => {
             <SelectValue placeholder="Today" />
           </SelectTrigger>
           <SelectContent width="w-[277px]">
-            <SelectItem color="text-[#6E6E73]" value="Today">
+            <SelectItem color="text-black" value="Today">
               Today
             </SelectItem>
-            <SelectItem color="text-[#6E6E73]" value="Yesterday">
+            <SelectItem color="text-black" value="Yesterday">
               Yesterday
+            </SelectItem>
+            <SelectItem color="text-black" value="This week">
+              This week
+            </SelectItem>
+            <SelectItem color="text-black" value="This month">
+              This month
+            </SelectItem>
+            <SelectItem color="text-black" value="Last month">
+              Last month
+            </SelectItem>
+            <SelectItem color="text-black" value="Last 3 month">
+              Last 3 month
+            </SelectItem>
+            <SelectItem color="text-black" value="Last 6 month">
+              Last 6 month
             </SelectItem>
           </SelectContent>
         </Select>
@@ -45,6 +72,8 @@ const UserDashboard = () => {
           </div>
         ))}
       </div>
+     
+     
     </>
   );
 };

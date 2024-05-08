@@ -13,13 +13,11 @@ const AdminNav = () => {
             Admin
           </p>
         </div>
-        <Link to="/">
-          <img
-            className="w-14 md:w-[69px] md:h-[73px]"
-            src={pageLogo}
-            alt="page logo"
-          />
-        </Link>
+        <img
+          className="w-14 md:w-[69px] md:h-[73px]"
+          src={pageLogo}
+          alt="page logo"
+        />
         <Link to="/">
           <button className="py-[6px] md:py-[9px] px-3 hover:text-primary group hover:bg-white duration-200 md:px-[18px] border border-white flex gap-2 sm:gap-4 items-center text-white text-base sm:text-xl md:text-2xl font-medium rounded-[10px] bg-transparent">
             <IoMdPower className="text-white w-5 group-hover:text-primary duration-200 sm:w-[31px] h-6 sm:h-[31px]" />

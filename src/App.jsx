@@ -2,9 +2,11 @@ import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import LoginPage from "./components/LoginPage";
 import Dashboard from "./components/Dashboard";
+import { ToastContainer } from "react-toastify";
 function App() {
   return (
     <>
+      <ToastContainer />
       <Routes>
         <Route element={<LoginPage />} path="/" />
         <Route element={<Dashboard />} path="/dashboard" />
