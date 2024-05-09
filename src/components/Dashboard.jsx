@@ -16,13 +16,32 @@ import AddProduct from "./AddProduct";
 import ComplaintsPage from "./ComplaintsPage";
 import OffersPage from "./OffersPage";
 import OrderLogsDetails from "./OrderLogsDetails";
-
+import axios from "axios";
 const Dashboard = () => {
   const { activeSubTab, activeTab } = useContext(MyContext);
   useEffect(() => {
     scrollTo(0, 0);
   }, [activeTab]);
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const response = await axios.get(
+  //         "https://v3h2dw9k-8002.inc1.devtunnels.ms/superadmin/user-data-list/",
+  //         {
+  //           auth: {
+  //             username: "gsa",
+  //             password: "gsa",
+  //           },
+  //         }
+  //       );
+  //       console.log(response.data);
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   };
 
+  //   fetchData();
+  // }, []);
   return (
     <>
       <section className="flex min-h-screen flex-col overflow-hidden">

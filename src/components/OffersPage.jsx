@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { BsPatchCheckFill } from "react-icons/bs";
 import { CalendarTwoIcon, DownArrowIcon } from "./common/Icons";
 import {
   Select,
@@ -8,6 +9,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 const OffersPage = () => {
+  const [isSent, setIsSent] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState("Choose Location");
   const options = ["Option 1", "Option 2", "Option 3"];
@@ -20,6 +22,12 @@ const OffersPage = () => {
     setSelectedOption(option);
     setIsOpen(false);
   };
+  const handleSent = () => {
+    setIsSent(true);
+    setTimeout(() => {
+      setIsSent(false);
+    }, 2000);
+  };
   return (
     <>
       <div className="w-full">
@@ -27,8 +35,22 @@ const OffersPage = () => {
           <p className="text-4xl pl-9 font-bold text-black leading-[80%]">
             Offers
           </p>
-          <button className="text-2xl font-semibold text-white duration-200 border border-transparent rounded-[10px] hover:text-[#0FB001] px-16 py-3.5 bg-[#0FB001] hover:bg-transparent hover:border-current">
-            Send Offer
+          <button
+            onClick={handleSent}
+            className={`text-2xl font-semibold text-white duration-200 text-nowrap border w-[256px] text-center rounded-[10px] px-16 py-3.5 ${
+              isSent
+                ? "flex items-center gap-3 justify-center border-[#0FB001]"
+                : "hover:text-[#0FB001] text-white bg-[#0FB001] hover:bg-transparent border-transparent hover:border-current"
+            }`}
+          >
+            {isSent ? (
+              <>
+                <span className="text-[#0FB001]">Sent</span>
+                <BsPatchCheckFill className="text-[#0FB001] text-lg" />
+              </>
+            ) : (
+              "Send Offer"
+            )}
           </button>
         </div>
         <form>

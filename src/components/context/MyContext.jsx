@@ -6,6 +6,9 @@ export const MyContextProvider = ({ children }) => {
   const [activeTab, setActiveTab] = useState("dashboard");
   const [activeSubTab, setActiveSubTab] = useState(null);
   const [showExport, setShowExport] = useState(false);
+  const [authenticated, setAuthenticated] = useState(false);
+  const [userData, setUserData] = useState(null);
+
   return (
     <MyContext.Provider
       value={{
@@ -15,6 +18,10 @@ export const MyContextProvider = ({ children }) => {
         setShowExport,
         activeTab,
         setActiveTab,
+        authenticated,
+        setAuthenticated,
+        userData,
+        setUserData,
       }}
     >
       {children}
