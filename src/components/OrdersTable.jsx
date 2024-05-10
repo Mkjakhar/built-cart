@@ -2,13 +2,14 @@ import React, { useContext } from "react";
 import { Checkbox } from "@/components/ui/checkbox";
 import { DateRangeIcon } from "./common/Icons";
 import MyContext from "./context/MyContext";
-
+import { ordersTabledata } from "./common/Helper";
+export const formatDateTime = (dateTimeString) => {
+  const date = new Date(dateTimeString);
+  return date.toLocaleDateString();
+};
 const OrdersTable = () => {
-  const { setActiveSubTab, userData } = useContext(MyContext);
-  const formatDateTime = (dateTimeString) => {
-    const date = new Date(dateTimeString);
-    return date.toLocaleDateString(); // Adjust formatting as needed
-  };
+  const { setActiveSubTab, orderData } = useContext(MyContext);
+
   return (
     <>
       <div className="overflow-auto hide_scroll">
@@ -51,8 +52,8 @@ const OrdersTable = () => {
               Status
             </p>
           </div>
-          {userData &&
-            userData.slice(0, 3).map((val, i) => (
+          {orderData &&
+            orderData.map((val, i) => (
               <div
                 key={i}
                 className={`h-[60px] mt-2 flex items-center ${
@@ -65,16 +66,16 @@ const OrdersTable = () => {
                   {val.user === "" || <Checkbox border="border-[#686868]" />}
                 </div>
                 <p className="font-medium pl-6 w-[178px] text-nowrap text-2xl leading-5 text-[#282828]">
-                  {formatDateTime(val.customuser.updated_at)}
+                  {formatDateTime(val.created_at)}
                 </p>
                 <p
                   onClick={() => setActiveSubTab("order-details")}
                   className="font-medium underline cursor-pointer text-nowrap pl-6 w-[232px] text-2xl leading-5 text-dark"
                 >
-                  {val.id}
+                  {val.order_id}
                 </p>
                 <p className="font-medium text-nowrap pl-6 w-[249px] text-2xl leading-5 text-[#282828]">
-                  {val.customuser.mobile_number}
+                  {val.user}
                 </p>
                 <p className="font-medium text-nowrap pl-6 w-[237px] text-2xl leading-5 text-[#282828]">
                   {val.location}

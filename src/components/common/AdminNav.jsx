@@ -7,6 +7,8 @@ const AdminNav = () => {
   const { setAuthenticated } = useContext(MyContext);
   const logout = () => {
     setAuthenticated(false);
+    sessionStorage.removeItem("accessToken");
+    sessionStorage.removeItem("refreshToken");
   };
   return (
     <>

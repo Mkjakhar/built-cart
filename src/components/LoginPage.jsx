@@ -1,13 +1,16 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import pageLogo from "../assets/images/webp/page-logo.webp";
 import axios from "axios";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 import MyContext from "./context/MyContext";
-const LoginPage = () => {
-  const { setUserData, setAuthenticated } = useContext(MyContext);
 
+export const baseUrl = "https://v3h2dw9k-8002.inc1.devtunnels.ms";
+
+const LoginPage = () => {
+  const { setUserData, setAuthenticated, authenticated, setOrderData } =
+    useContext(MyContext);
   const navigate = useNavigate();
   const [formData, setFormData] = useState({ username: "", password: "" });
 
@@ -20,38 +23,75 @@ const LoginPage = () => {
     e.preventDefault();
     try {
       const loginResponse = await axios.post(
-        "https://v3h2dw9k-8002.inc1.devtunnels.ms/superadmin/dashboard-login/",
+        `${baseUrl}/superadmin/dashboard-login/`,
         formData
       );
       const accessToken = loginResponse.data.access_token;
+      const refreshToken = loginResponse.data.refresh_token;
 
+      // Store the access token in sessionStorage
+      if (accessToken) {
+        sessionStorage.setItem("accessToken", accessToken);
+      }
+      if (refreshToken) {
+        sessionStorage.setItem("refreshToken", refreshToken);
+      }
+
+      // show notification
+      toast.success("Login successful!", {
+        className: "rounded-[10px]",
+      });
+      // Fetch user data and set authentication status
+      await fetchUserData(accessToken);
+      setAuthenticated(true);
+      // Redirect to dashboard
+      navigate("/dashboard");
+      // Reset form data
+      setFormData({ username: "", password: "" });
+    } catch (error) {
+      console.error("Login error:", error);
+      // show notification
+      toast.error("Error! Please try again.", {
+        className: "rounded-[10px]",
+      });
+    }
+  };
+  const fetchUserData = async (accessToken) => {
+    try {
       const userDataList = await axios.get(
-        "https://v3h2dw9k-8002.inc1.devtunnels.ms/superadmin/user-data-list/",
+        `${baseUrl}/superadmin/add-user-dashboard/`,
         {
           headers: {
             Authorization: `Bearer ${accessToken}`,
           },
         }
       );
-
-      setUserData(userDataList.data.response);
-      console.log(userDataList.data.response);
-      console.log(loginResponse.data.message);
-      // show notification
-      toast.success("Success!", {
-        className: "rounded-[10px]",
-      });
-      setAuthenticated(true);
-      navigate("/dashboard");
-      setFormData({ username: "", password: "" });
+      const orderDataList = await axios.get(
+        `${baseUrl}/superadmin/orders-list-dashboard/`,
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        }
+      );
+      setUserData(userDataList.data);
+      setOrderData(orderDataList.data.response);
     } catch (error) {
-      console.error("Login error:", error);
-      // show notification
-      toast.error("Error! Try again", {
+      console.error("Fetch user data error:", error);
+      // Show error message
+      toast.error("Error fetching user data. Try again", {
         className: "rounded-[10px]",
       });
     }
   };
+  // useEffect(() => {
+  //   const isRefreshToken = sessionStorage.getItem("refreshToken");
+  //   console.log(authenticated);
+  //   if (isRefreshToken) {
+  //     setAuthenticated(true);
+  //   }
+  // }, []);
+
   return (
     <>
       <section className="min-h-screen bg-primary-gradient flex items-center flex-col justify-center py-14">
