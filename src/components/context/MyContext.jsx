@@ -9,6 +9,7 @@ export const MyContextProvider = ({ children }) => {
   const [authenticated, setAuthenticated] = useState(false);
   const [userData, setUserData] = useState(null);
   const [orderData, setOrderData] = useState(null);
+  const [statusData, setStatusData] = useState(null);
 
   return (
     <MyContext.Provider
@@ -25,6 +26,8 @@ export const MyContextProvider = ({ children }) => {
         setUserData,
         orderData,
         setOrderData,
+        statusData,
+        setStatusData,
       }}
     >
       {children}

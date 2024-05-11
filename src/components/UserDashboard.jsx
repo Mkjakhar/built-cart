@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { ChooseIcon } from "./common/Icons";
 import { userDashboardData } from "./common/Helper";
 import { FaCheck } from "react-icons/fa";
@@ -12,65 +12,94 @@ import {
 } from "@/components/ui/select";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import MyContext from "./context/MyContext";
+import { fetchStatusData } from "./utils/auth";
 const UserDashboard = () => {
-  const showToastMessage = () => {
-    toast.success("Success Notification !", {
-      className: "rounded-[10px]",
-    });
+  const { statusData, setStatusData } = useContext(MyContext);
+  // superadmin/dashbaord-view-status/
+  const handleStatusUpdate = (value) => {
+    fetchStatusData(setStatusData, value);
+    console.log(value);
   };
   return (
     <>
       <div className="flex items-center ps-9 pb-16">
         <ChooseIcon />
-        <p
-          onClick={showToastMessage}
-          className="text-2xl text-black font-medium ms-[14px] mr-6"
-        >
+        <p className="text-2xl text-black font-medium ms-[14px] mr-6">
           Choose By
         </p>
-        <Select>
+        <Select onValueChange={handleStatusUpdate}>
           <SelectTrigger className="w-[277px]">
             <SelectValue placeholder="Today" />
           </SelectTrigger>
           <SelectContent width="w-[277px]">
-            <SelectItem color="text-black" value="Today">
+            <SelectItem color="text-black" value="today">
               Today
             </SelectItem>
-            <SelectItem color="text-black" value="Yesterday">
+            <SelectItem color="text-black" value="yesterday">
               Yesterday
             </SelectItem>
-            <SelectItem color="text-black" value="This week">
+            <SelectItem color="text-black" value="this week">
               This week
             </SelectItem>
-            <SelectItem color="text-black" value="This month">
+            <SelectItem color="text-black" value="this month">
               This month
             </SelectItem>
-            <SelectItem color="text-black" value="Last month">
+            <SelectItem color="text-black" value="last month">
               Last month
             </SelectItem>
-            <SelectItem color="text-black" value="Last 3 month">
+            <SelectItem color="text-black" value="last 3 month">
               Last 3 month
             </SelectItem>
-            <SelectItem color="text-black" value="Last 6 month">
+            <SelectItem color="text-black" value="last 6 month">
               Last 6 month
             </SelectItem>
           </SelectContent>
         </Select>
       </div>
       <div className="inline-grid grid-cols-2 ps-7 gap-y-11 gap-x-[72px] pb-10">
-        {userDashboardData.map((val, i) => (
-          <div
-            key={i}
-            className="w-[387px] p-[22px] bg-light shadow-lg text-center rounded-[10px]"
-          >
-            <p className={`text-2xl font-medium mb-2 ${val.style}`}>
-              {val.title}
-            </p>
-            <p className={`text-5xl font-bold leading-[72px] ${val.style}`}>
-              {val.data}
-            </p>
-          </div>
-        ))}
+        {statusData && (
+          <>
+            <div className="w-[387px] p-[22px] bg-light shadow-lg text-center rounded-[10px]">
+              <p className={`text-2xl font-medium mb-2 text-dark `}>
+                Total User{" "}
+              </p>
+              <p className={`text-5xl font-bold leading-[72px] text-dark `}>
+                {statusData.Total_User}
+              </p>
+            </div>
+            <div className="w-[387px] p-[22px] bg-light shadow-lg text-center rounded-[10px]">
+              <p className={`text-2xl font-medium mb-2 text-[#FDC63A] `}>
+                Total Orders
+              </p>
+              <p
+                className={`text-5xl font-bold leading-[72px] text-[#FDC63A] `}
+              >
+                {statusData.Total_Order}
+              </p>
+            </div>
+            <div className="w-[387px] p-[22px] bg-light shadow-lg text-center rounded-[10px]">
+              <p className={`text-2xl font-medium mb-2 text-[#D31010] `}>
+                Orders Pending
+              </p>
+              <p
+                className={`text-5xl font-bold leading-[72px] text-[#D31010] `}
+              >
+                {statusData.Order_Pending}
+              </p>
+            </div>
+            <div className="w-[387px] p-[22px] bg-light shadow-lg text-center rounded-[10px]">
+              <p className={`text-2xl font-medium mb-2 text-[#0FB001] `}>
+                Orders Completed
+              </p>
+              <p
+                className={`text-5xl font-bold leading-[72px] text-[#0FB001] `}
+              >
+                {statusData.Order_Completed}
+              </p>
+            </div>
+          </>
+        )}
       </div>
     </>
   );

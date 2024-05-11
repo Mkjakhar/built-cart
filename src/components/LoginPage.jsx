@@ -5,12 +5,16 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 import MyContext from "./context/MyContext";
-
-export const baseUrl = "https://v3h2dw9k-8002.inc1.devtunnels.ms";
+import { baseUrl, fetchUserData } from "./utils/auth";
 
 const LoginPage = () => {
-  const { setUserData, setAuthenticated, authenticated, setOrderData } =
-    useContext(MyContext);
+  const {
+    setUserData,
+    setAuthenticated,
+    authenticated,
+    setOrderData,
+    setStatusData,
+  } = useContext(MyContext);
   const navigate = useNavigate();
   const [formData, setFormData] = useState({ username: "", password: "" });
 
@@ -42,7 +46,7 @@ const LoginPage = () => {
         className: "rounded-[10px]",
       });
       // Fetch user data and set authentication status
-      await fetchUserData(accessToken);
+      await fetchUserData(setUserData, setOrderData, setStatusData);
       setAuthenticated(true);
       // Redirect to dashboard
       navigate("/dashboard");
@@ -56,41 +60,6 @@ const LoginPage = () => {
       });
     }
   };
-  const fetchUserData = async (accessToken) => {
-    try {
-      const userDataList = await axios.get(
-        `${baseUrl}/superadmin/add-user-dashboard/`,
-        {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
-        }
-      );
-      const orderDataList = await axios.get(
-        `${baseUrl}/superadmin/orders-list-dashboard/`,
-        {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
-        }
-      );
-      setUserData(userDataList.data);
-      setOrderData(orderDataList.data.response);
-    } catch (error) {
-      console.error("Fetch user data error:", error);
-      // Show error message
-      toast.error("Error fetching user data. Try again", {
-        className: "rounded-[10px]",
-      });
-    }
-  };
-  // useEffect(() => {
-  //   const isRefreshToken = sessionStorage.getItem("refreshToken");
-  //   console.log(authenticated);
-  //   if (isRefreshToken) {
-  //     setAuthenticated(true);
-  //   }
-  // }, []);
 
   return (
     <>

@@ -39,7 +39,7 @@ const UserDataTable = () => {
             </p>
           </div>
           {userData &&
-            userData.slice(0, 3).map((val, i) => (
+            userData.map((val, i) => (
               <div
                 key={i}
                 className={`h-[60px] mt-2 flex items-center ${

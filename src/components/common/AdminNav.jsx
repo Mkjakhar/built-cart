@@ -3,12 +3,15 @@ import { AdminIcon } from "./Icons";
 import pageLogo from "../../assets/images/webp/page-logo.webp";
 import { IoMdPower } from "react-icons/io";
 import MyContext from "../context/MyContext";
+import { useNavigate } from "react-router-dom";
 const AdminNav = () => {
   const { setAuthenticated } = useContext(MyContext);
+  const navigate = useNavigate();
   const logout = () => {
     setAuthenticated(false);
     sessionStorage.removeItem("accessToken");
     sessionStorage.removeItem("refreshToken");
+    navigate("/");
   };
   return (
     <>

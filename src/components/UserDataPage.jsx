@@ -1,8 +1,29 @@
-import React from "react";
+import React, { useContext } from "react";
 import { IoSearchSharp } from "react-icons/io5";
 import CommonBtn from "./common/CommonBtn";
 import UserDataTable from "./UserDataTable";
+import axios from "axios";
+import { baseUrl } from "./utils/auth";
+import MyContext from "./context/MyContext";
 const UserDataPage = () => {
+  const { setUserData } = useContext(MyContext);
+  const filterUserWithName = async (e) => {
+    const accessToken = sessionStorage.getItem("accessToken");
+    try {
+      const userDataList = await axios.get(
+        `${baseUrl}/superadmin/add-user-dashboard/?name_contains=${e.target.value}`,
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        }
+      );
+      console.log(e.target.value);
+      setUserData(userDataList.data);
+    } catch (error) {
+      console.error("Fetch user data error:", error);
+    }
+  };
   return (
     <>
       <div className="w-full">
@@ -13,6 +34,7 @@ const UserDataPage = () => {
           <div className="flex items-center gap-[10px] me-4 max-h-[62px] border w-[432px] border-black rounded-[10px] px-[13px]">
             <IoSearchSharp className="text-dark text-[28px]" />
             <input
+              onChange={filterUserWithName}
               type="text"
               placeholder="Search Name, Location..."
               className="text-2xl text-[#6E6E73] leading-5 w-full placeholder:text-[#6E6E73] font-medium outline-none border-0 bg-transparent py-5"
