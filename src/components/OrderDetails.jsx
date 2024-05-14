@@ -3,7 +3,15 @@ import { IoArrowBack } from "react-icons/io5";
 import MyContext from "./context/MyContext";
 
 const OrderDetails = (props) => {
-  const { setActiveSubTab } = useContext(MyContext);
+  const { setActiveSubTab, orderData, categorySelect } = useContext(MyContext);
+  // const userOrderDetails = orderData.filter((obj) => obj.id === categorySelect);
+  const userOrderDetails = orderData.reduce((acc, item) => {
+    if (item.id === categorySelect) {
+      acc = item;
+    }
+    return acc;
+  }, null);
+  console.log(userOrderDetails);
   return (
     <>
       <div className="pl-[26px] pb-10">
@@ -14,7 +22,7 @@ const OrderDetails = (props) => {
           >
             <IoArrowBack className="text-[50px]" />
             <p className="text-3xxl text-dark font-semibold">
-              Order ID #26474849
+              Order ID {userOrderDetails.order_id}
             </p>
           </div>
           <p
@@ -23,7 +31,7 @@ const OrderDetails = (props) => {
             {props.status}
           </p>
         </div>
-        <form className="w-[95%] xl:w-[87%]">
+        <div className="w-[95%] xl:w-[87%]">
           <div className="flex gap-6 justify-between">
             <div className="flex flex-col w-full max-w-[396px]">
               <label
@@ -39,12 +47,12 @@ const OrderDetails = (props) => {
               />
             </div>
             <div className="flex flex-col w-full max-w-[396px]">
-              <label
+              <lapel
                 htmlFor="number"
                 className="text-2xl font-normal text-black mb-2"
               >
                 Mobile Number
-              </label>
+              </lapel>
               <input
                 id="number"
                 type="number"
@@ -163,7 +171,7 @@ const OrderDetails = (props) => {
               className="border border-black text-2xl font-normal text-black placeholder:text-black px-5 w-full h-[62px] rounded-[10px] bg-transparent outline-none"
             />
           </div>
-        </form>
+        </div>
       </div>
     </>
   );

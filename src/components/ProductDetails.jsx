@@ -3,14 +3,36 @@ import { IoSearchSharp } from "react-icons/io5";
 import CommonBtn from "./common/CommonBtn";
 import ProductDetailsTables from "./ProductDetailsTable";
 import MyContext from "./context/MyContext";
+import { removeCategory, updateCategory } from "./utils/auth";
 const ProductDetails = () => {
-  const { setActiveSubTab } = useContext(MyContext);
+  const {
+    setActiveSubTab,
+    categorySelect,
+    setCategoryData,
+    setEditOverlay,
+    editOverlay,
+    categoryData,
+  } = useContext(MyContext);
+  const deleteCategory = (id) => {
+    console.log(id);
+    removeCategory(id, setActiveSubTab, setCategoryData);
+  };
+  const editCategory = (id) => {
+    console.log(id);
+    updateCategory(id, setActiveSubTab, setCategoryData);
+  };
+
+  const dataForCurrTitle = categoryData.filter(
+    (currElem) => currElem.id === categorySelect
+  );
+
   return (
     <>
       <div className="w-full">
         <p className="text-4xl ps-7 font-bold text-black leading-[80%] mb-[62px]">
-          Tiles
+          {dataForCurrTitle[0].name}
         </p>
+
         <div className="flex items-center ps-7 mb-10 gap-3 justify-between pr-8 hide_scroll overflow-auto">
           <div>
             <div className="flex items-center gap-[10px] me-4 max-h-[62px] border w-[432px] border-black rounded-[10px] px-[13px]">
@@ -30,10 +52,12 @@ const ProductDetails = () => {
               Add Product
             </button>
             <CommonBtn
+              clickEvent={() => setEditOverlay(!editOverlay)}
               style="text-white bg-[#606060] hover:bg-transparent hover:text-[#606060]"
               btntext="Edit"
             />
             <CommonBtn
+              clickEvent={() => deleteCategory(categorySelect)}
               style="text-white bg-[#FF3D00] hover:bg-transparent hover:text-[#FF3D00]"
               btntext="Delete"
             />

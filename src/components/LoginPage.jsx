@@ -14,6 +14,7 @@ const LoginPage = () => {
     authenticated,
     setOrderData,
     setStatusData,
+    setCategoryData,
   } = useContext(MyContext);
   const navigate = useNavigate();
   const [formData, setFormData] = useState({ username: "", password: "" });
@@ -46,7 +47,12 @@ const LoginPage = () => {
         className: "rounded-[10px]",
       });
       // Fetch user data and set authentication status
-      await fetchUserData(setUserData, setOrderData, setStatusData);
+      await fetchUserData(
+        setUserData,
+        setOrderData,
+        setStatusData,
+        setCategoryData
+      );
       setAuthenticated(true);
       // Redirect to dashboard
       navigate("/dashboard");

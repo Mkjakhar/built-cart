@@ -7,9 +7,13 @@ export const MyContextProvider = ({ children }) => {
   const [activeSubTab, setActiveSubTab] = useState(null);
   const [showExport, setShowExport] = useState(false);
   const [authenticated, setAuthenticated] = useState(false);
+  const [editOverlay, setEditOverlay] = useState(false);
+  const [categorySelect, setCategorySelect] = useState(null);
   const [userData, setUserData] = useState(null);
   const [orderData, setOrderData] = useState(null);
   const [statusData, setStatusData] = useState(null);
+  const [categoryData, setCategoryData] = useState(null);
+  const [productDetailsData, setProductDetailsData] = useState(null);
 
   return (
     <MyContext.Provider
@@ -28,6 +32,14 @@ export const MyContextProvider = ({ children }) => {
         setOrderData,
         statusData,
         setStatusData,
+        categoryData,
+        setCategoryData,
+        productDetailsData,
+        setProductDetailsData,
+        categorySelect,
+        setCategorySelect,
+        editOverlay,
+        setEditOverlay
       }}
     >
       {children}

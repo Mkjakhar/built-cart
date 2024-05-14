@@ -1,8 +1,5 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { ChooseIcon } from "./common/Icons";
-import { userDashboardData } from "./common/Helper";
-import { FaCheck } from "react-icons/fa";
-import { ImCross } from "react-icons/im";
 import {
   Select,
   SelectContent,
@@ -10,22 +7,25 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import MyContext from "./context/MyContext";
 import { fetchStatusData } from "./utils/auth";
+import { exportData } from "./utils/export";
 const UserDashboard = () => {
-  const { statusData, setStatusData } = useContext(MyContext);
-  // superadmin/dashbaord-view-status/
+  const { statusData, setStatusData, userData } = useContext(MyContext);
+  const [fileType, setFileType] = useState("pdf");
+
   const handleStatusUpdate = (value) => {
     fetchStatusData(setStatusData, value);
-    console.log(value);
   };
   return (
     <>
       <div className="flex items-center ps-9 pb-16">
         <ChooseIcon />
-        <p className="text-2xl text-black font-medium ms-[14px] mr-6">
+        <p
+          onClick={() => exportData(userData, fileType)}
+          className="text-2xl text-black font-medium ms-[14px] mr-6"
+        >
           Choose By
         </p>
         <Select onValueChange={handleStatusUpdate}>

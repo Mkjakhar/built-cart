@@ -1,9 +1,10 @@
 import React, { useContext } from "react";
 import { Checkbox } from "@/components/ui/checkbox";
-import { productDetailsData } from "./common/Helper";
 import MyContext from "./context/MyContext";
+import { formatDateTime } from "./OrdersTable";
 const ProductDetailsTables = () => {
-  const { setActiveSubTab } = useContext(MyContext);
+  const { productDetailsData } = useContext(MyContext);
+  console.log(productDetailsData);
   return (
     <>
       <div className="overflow-auto hide_scroll">
@@ -27,30 +28,33 @@ const ProductDetailsTables = () => {
               Total Orders
             </p>
           </div>
-          {productDetailsData.map((val, i) => (
-            <div
-              key={i}
-              className={`h-[60px] mt-2 gap-[65px] flex items-center ${
-                i % 2 === 0 ? "bg-[#FEF9EB]" : "bg-white"
-              }`}
-            >
-              <div className="px-[54px] w-[136px]">
-                <Checkbox border="border-[#686868]" />
-              </div>
-              <p className="font-medium pl-6 w-[244px] text-nowrap text-2xl leading-5 text-[#282828] -ml-[65px]">
-                {val.date}
-              </p>
-              <p className="font-medium pl-6 w-[280px] text-nowrap text-2xl leading-5 text-[#282828]">
-                {val.product}
-              </p>
-              <p className="font-medium text-nowrap pl-6 w-[280px] text-2xl leading-5 text-[#282828]">
-                {val.price}
-              </p>
-              <p className="font-medium text-nowrap pl-6 w-[280px] text-2xl leading-5 text-[#282828]">
-                {val.orders}
-              </p>
-            </div>
-          ))}
+          {productDetailsData &&
+            productDetailsData.map((val, i) =>
+              val.total_product.map((obj) => (
+                <div
+                  className={`h-[60px] mt-2 gap-[65px] flex items-center ${
+                    i % 2 === 0 ? "bg-[#FEF9EB]" : "bg-white"
+                  }`}
+                  key={i}
+                >
+                  <div className="px-[54px] w-[136px]">
+                    <Checkbox border="border-[#686868]" />
+                  </div>
+                  <p className="font-medium pl-6 w-[244px] text-nowrap text-2xl leading-5 text-[#282828] -ml-[65px]">
+                    {formatDateTime(obj.created_at)}
+                  </p>
+                  <p className="font-medium pl-6 w-[280px] text-nowrap text-2xl leading-5 text-[#282828]">
+                    {obj.name}
+                  </p>
+                  <p className="font-medium text-nowrap pl-6 w-[280px] text-2xl leading-5 text-[#282828]">
+                    {obj.selling_price}
+                  </p>
+                  <p className="font-medium text-nowrap pl-6 w-[280px] text-2xl leading-5 text-[#282828]">
+                    {obj.order_products}
+                  </p>
+                </div>
+              ))
+            )}
         </div>
       </div>
     </>

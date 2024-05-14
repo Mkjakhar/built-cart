@@ -18,7 +18,11 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "express": "^4.19.2",
+    "file-saver": "^2.0.5",
+    "html2pdf.js": "^0.10.1",
     "http-proxy-middleware": "^3.0.0",
+    "jspdf": "^2.5.1",
+    "jspdf-autotable": "^3.8.2",
     "lucide-react": "^0.377.0",
     "postcss": "^8.4.38",
     "react": "^18.2.0",
@@ -27,7 +31,8 @@
     "react-router-dom": "^6.23.0",
     "react-toastify": "^10.0.5",
     "tailwind-merge": "^2.3.0",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "xlsx": "^0.18.5"
   },
   "devDependencies": {
     "@types/react": "^18.2.66",

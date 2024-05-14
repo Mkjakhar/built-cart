@@ -6,20 +6,21 @@ import Dashboard from "./components/Dashboard";
 import { ToastContainer } from "react-toastify";
 import MyContext from "./components/context/MyContext";
 import { fetchUserData } from "./components/utils/auth";
+import ProtectedRoute from "./components/routes/ProtectedRoute";
 
 function App() {
   const {
     authenticated,
     setAuthenticated,
-    userData,
     setOrderData,
     setUserData,
     setStatusData,
+    setCategoryData,
   } = useContext(MyContext);
   useEffect(() => {
     const accessToken = sessionStorage.getItem("accessToken");
     if (accessToken) {
-      fetchUserData(setUserData, setOrderData, setStatusData);
+      fetchUserData(setUserData, setOrderData, setStatusData, setCategoryData);
     }
   }, []);
 
@@ -30,18 +31,25 @@ function App() {
       setAuthenticated(true);
     }
   }, [authenticated]);
-  console.log(userData);
 
   return (
     <>
       <ToastContainer />
       <Routes>
         <Route path="/" element={<LoginPage />} />
-        {authenticated ? (
+        {/* {authenticated ? (
           <Route path="/dashboard" element={<Dashboard />} />
         ) : (
           <Route path="/" element={<LoginPage />} />
-        )}
+        )} */}
+        <Route
+          path="/dashboard"
+          element={
+            <ProtectedRoute>
+              <Dashboard />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
     </>
   );

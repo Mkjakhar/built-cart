@@ -8,8 +8,12 @@ export const formatDateTime = (dateTimeString) => {
   return date.toLocaleDateString();
 };
 const OrdersTable = () => {
-  const { setActiveSubTab, orderData } = useContext(MyContext);
-
+  const { setActiveSubTab, orderData, setCategorySelect } =
+    useContext(MyContext);
+  const showOrderDetails = (id) => {
+    setCategorySelect(id);
+    setActiveSubTab("order-details");
+  };
   return (
     <>
       <div className="overflow-auto hide_scroll">
@@ -69,7 +73,7 @@ const OrdersTable = () => {
                   {formatDateTime(val.created_at)}
                 </p>
                 <p
-                  onClick={() => setActiveSubTab("order-details")}
+                  onClick={() => showOrderDetails(val.id)}
                   className="font-medium underline cursor-pointer text-nowrap pl-6 w-[232px] text-2xl leading-5 text-dark"
                 >
                   {val.order_id}

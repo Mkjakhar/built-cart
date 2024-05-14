@@ -16,18 +16,18 @@ import AddProduct from "./AddProduct";
 import ComplaintsPage from "./ComplaintsPage";
 import OffersPage from "./OffersPage";
 import OrderLogsDetails from "./OrderLogsDetails";
-import axios from "axios";
+import EditOverlay from "./common/EditOverlay";
 const Dashboard = () => {
-  const { activeSubTab, activeTab } = useContext(MyContext);
+  const { activeSubTab, activeTab, userData } = useContext(MyContext);
   useEffect(() => {
     scrollTo(0, 0);
   }, [activeTab]);
- 
 
   return (
     <>
       <section className="flex min-h-screen flex-col overflow-hidden">
         <AdminNav />
+        <EditOverlay />
         <div className="flex flex-grow overflow-x-hidden max-w-[1920px] mx-auto">
           <DashboardSideBar />
           <div className="pt-10 w-[calc(100vw-265px)] min-[1920px]:w-[calc(1920px-265px)] h-[calc(100vh-99px)] overflow-auto">
@@ -59,7 +59,7 @@ const Dashboard = () => {
               )
             ) : activeTab === "categories" ? (
               activeSubTab === "categories-products" ? (
-                <ProductDetails />
+                <ProductDetails id="" />
               ) : activeSubTab === "add-products" ? (
                 <AddProduct />
               ) : (

@@ -1,10 +1,23 @@
 import React, { useContext } from "react";
 import { Checkbox } from "@/components/ui/checkbox";
-import { categoriesData } from "./common/Helper";
 import MyContext from "./context/MyContext";
 import { DateRangeIcon } from "./common/Icons";
-const CategoriesTable = () => {
-  const { setActiveSubTab } = useContext(MyContext);
+import { formatDateTime } from "./OrdersTable";
+const CategoriesTable = ({ onCategorySelect }) => {
+  const {
+    setActiveSubTab,
+    categoryData,
+    setProductDetailsData,
+    setCategorySelect,
+  } = useContext(MyContext);
+  const showProductDetails = (id) => {
+    setActiveSubTab("categories-products");
+    const data = categoryData.filter((currElem) => currElem.id === id);
+    console.log(id);
+    setProductDetailsData(data);
+    setCategorySelect(id);
+  };
+
   return (
     <>
       <div className="overflow-auto hide_scroll">
@@ -32,42 +45,43 @@ const CategoriesTable = () => {
               Total Orders
             </p>
           </div>
-          {categoriesData.map((val, i) => (
-            <div
-              key={i}
-              className={`h-[60px] mt-2 gap-[62px] flex items-center ${
-                i % 2 === 0 ? "bg-[#FEF9EB]" : "bg-white"
-              }`}
-            >
-              <div className="px-[54px] w-[136px]">
-                <Checkbox border="border-[#686868]" />
-              </div>
-              <p className="font-medium pl-6 w-[178px] text-nowrap text-2xl leading-5 text-[#282828] -ml-[62px]">
-                {val.date}
-              </p>
-              <div className=" pl-6 w-[204px]">
-                <img
-                  width={67}
-                  src={val.img}
-                  className="rounded"
-                  alt="category pic"
-                />
-              </div>
-              <p className="font-medium underline text-nowrap pl-6 w-[204px] text-2xl leading-5 text-[#282828]">
-                {val.category}
-              </p>
-
-              <p
-                onClick={() => setActiveSubTab("categories-products")}
-                className="font-medium cursor-pointer underline text-nowrap pl-6 w-[270px] text-2xl leading-5 text-[#0028B7]"
+          {categoryData &&
+            categoryData.map((val, i) => (
+              <div
+                key={val.id}
+                className={`h-[60px] mt-2 gap-[62px] flex items-center ${
+                  i % 2 === 0 ? "bg-[#FEF9EB]" : "bg-white"
+                }`}
               >
-                {val.products}
-              </p>
-              <p className="font-medium text-nowrap pl-6 w-[204px] text-2xl leading-5 text-[#282828]">
-                {val.orders}
-              </p>
-            </div>
-          ))}
+                <div className="px-[54px] w-[136px]">
+                  <Checkbox border="border-[#686868]" />
+                </div>
+                <p className="font-medium pl-6 w-[178px] text-nowrap text-2xl leading-5 text-[#282828] -ml-[62px]">
+                  {formatDateTime(val.created_at)}
+                </p>
+                <div className=" pl-6 w-[204px]">
+                  <img
+                    width={67}
+                    src={val.image}
+                    className="rounded"
+                    alt="category pic"
+                  />
+                </div>
+                <p className="font-medium underline text-nowrap pl-6 w-[204px] text-2xl leading-5 text-[#282828]">
+                  {val.name}
+                </p>
+
+                <p
+                  onClick={() => showProductDetails(val.id)}
+                  className="font-medium cursor-pointer underline text-nowrap pl-6 w-[270px] text-2xl leading-5 text-[#0028B7]"
+                >
+                  {val.total_product_count}
+                </p>
+                <p className="font-medium text-nowrap pl-6 w-[204px] text-2xl leading-5 text-[#282828]">
+                  {val.total_order}
+                </p>
+              </div>
+            ))}
         </div>
       </div>
     </>
