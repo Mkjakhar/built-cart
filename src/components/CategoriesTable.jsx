@@ -62,7 +62,7 @@ const CategoriesTable = ({ onCategorySelect }) => {
                 <div className=" pl-6 w-[204px]">
                   <img
                     width={67}
-                    src={val.image}
+                    src={`/media/category/images/${val.image.split("/").pop()}`}
                     className="rounded"
                     alt="category pic"
                   />

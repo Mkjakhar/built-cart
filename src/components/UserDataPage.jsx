@@ -5,8 +5,10 @@ import UserDataTable from "./UserDataTable";
 import axios from "axios";
 import { baseUrl } from "./utils/auth";
 import MyContext from "./context/MyContext";
+import { exportData } from "./utils/export";
 const UserDataPage = () => {
-  const { setUserData } = useContext(MyContext);
+  const { setUserData, userData, setShowExport, showExport, setSelectExport } =
+    useContext(MyContext);
   const filterUserWithName = async (e) => {
     const accessToken = sessionStorage.getItem("accessToken");
     try {
@@ -46,6 +48,9 @@ const UserDataPage = () => {
               btntext="Block"
             />
             <CommonBtn
+              clickEvent={() => {
+                setSelectExport(userData), setShowExport(!showExport);
+              }}
               style="text-black bg-[#FDC63A] hover:bg-transparent hover:text-[#FDC63A]"
               btntext="Export"
             />

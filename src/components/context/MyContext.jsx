@@ -9,6 +9,7 @@ export const MyContextProvider = ({ children }) => {
   const [authenticated, setAuthenticated] = useState(false);
   const [editOverlay, setEditOverlay] = useState(false);
   const [categorySelect, setCategorySelect] = useState(null);
+  const [selectExport, setSelectExport] = useState(null);
   const [userData, setUserData] = useState(null);
   const [orderData, setOrderData] = useState(null);
   const [statusData, setStatusData] = useState(null);
@@ -39,7 +40,9 @@ export const MyContextProvider = ({ children }) => {
         categorySelect,
         setCategorySelect,
         editOverlay,
-        setEditOverlay
+        setEditOverlay,
+        selectExport,
+        setSelectExport,
       }}
     >
       {children}

@@ -12,7 +12,8 @@ import CommonBtn from "./common/CommonBtn";
 import OrdersTable from "./OrdersTable";
 import MyContext from "./context/MyContext";
 const Orders = () => {
-  const { showExport, setShowExport } = useContext(MyContext);
+  const { showExport, setShowExport, orderData, setSelectExport } =
+    useContext(MyContext);
   const [accept, setAccept] = useState(false);
   return (
     <>
@@ -89,7 +90,9 @@ const Orders = () => {
               btntext="Refund"
             />
             <CommonBtn
-              clickEvent={() => setShowExport(!showExport)}
+              clickEvent={() => {
+                setSelectExport(orderData), setShowExport(!showExport);
+              }}
               style="text-black bg-[#FDC63A] hover:bg-transparent hover:text-[#FDC63A]"
               btntext="Export"
             />

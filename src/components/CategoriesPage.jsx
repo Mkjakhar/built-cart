@@ -14,6 +14,9 @@ const CategoriesPage = () => {
     categoryData,
     setEditOverlay,
     editOverlay,
+    setShowExport,
+    showExport,
+    setSelectExport,
   } = useContext(MyContext);
 
   const [addOverlay, setAddOverlay] = useState(false);
@@ -92,6 +95,9 @@ const CategoriesPage = () => {
               btntext="Delete"
             />
             <CommonBtn
+              clickEvent={() => {
+                setSelectExport(categoryData), setShowExport(!showExport);
+              }}
               style="text-black bg-[#FDC63A] hover:bg-transparent hover:text-[#FDC63A]"
               btntext="Export"
             />

@@ -8,12 +8,17 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import MyContext from "./context/MyContext";
+import { exportData } from "./utils/export";
 const ExportOverlay = () => {
-  const { showExport, setShowExport } = useContext(MyContext);
+  const { showExport, setShowExport, selectExport } = useContext(MyContext);
   const [status, setStatus] = useState("export");
+  const [fileType, setFileType] = useState("pdf");
   const handleClick = () => {
     if (status === "export") {
-      setStatus("exported");
+      exportData(selectExport, fileType, () => {
+        setStatus("exported");
+      });
+
       setTimeout(() => {
         setStatus("done");
       }, 1000);
@@ -71,19 +76,22 @@ const ExportOverlay = () => {
             <p className="text-xl font-normal text-black mb-[10px]">
               File Type
             </p>
-            <Select>
+            <Select onValueChange={(value) => setFileType(value)}>
               <SelectTrigger
                 titleColor="placeholder:!text-dark !text-dark"
                 className="w-[255px]"
               >
-                <SelectValue placeholder=".doc" />
+                <SelectValue placeholder="pdf" />
               </SelectTrigger>
               <SelectContent width="w-[255px]">
-                <SelectItem color="text-dark" value=".doc">
-                  .doc
+                <SelectItem color="text-dark" value="pdf">
+                  pdf
                 </SelectItem>
-                <SelectItem color="text-dark" value="Dispatched">
-                  .doc
+                <SelectItem color="text-dark" value="xlsx">
+                  xlsx
+                </SelectItem>
+                <SelectItem color="text-dark" value="xls">
+                  xls
                 </SelectItem>
               </SelectContent>
             </Select>
