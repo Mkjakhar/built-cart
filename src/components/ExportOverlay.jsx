@@ -17,6 +17,7 @@ import { exportData } from "./utils/export";
 const ExportOverlay = () => {
   const { showExport, setShowExport, selectExport } = useContext(MyContext);
   const [status, setStatus] = useState("export");
+  const [timeFrame, setTimeFrame] = useState(null);
   const [fileType, setFileType] = useState("pdf");
   const handleClick = () => {
     if (status === "export") {
