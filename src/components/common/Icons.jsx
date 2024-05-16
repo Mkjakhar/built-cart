@@ -192,9 +192,10 @@ export const CloseIcon = ({ style }) => {
     </svg>
   );
 };
-export const CalendarIcon = () => {
+export const CalendarIcon = ({ style }) => {
   return (
     <svg
+      className={style}
       width="38"
       height="39"
       viewBox="0 0 38 39"

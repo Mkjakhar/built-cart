@@ -1,5 +1,10 @@
 import React, { useContext, useState } from "react";
-import { CalendarIcon, CloseIcon, DownArrowIcon } from "./common/Icons";
+import {
+  CalendarIcon,
+  CalendarTwoIcon,
+  CloseIcon,
+  DownArrowIcon,
+} from "./common/Icons";
 import {
   Select,
   SelectContent,
@@ -51,24 +56,38 @@ const ExportOverlay = () => {
           </button>
           <p className="text-2xl font-semibold text-black mb-9">Export Files</p>
           <div className="flex justify-between gap-10 mb-4">
-            <div className="flex flex-col">
-              <p className="text-xl font-normal text-black mb-[10px]">From</p>
-              <div className="py-3 pl-6 pr-4 border gap-[55px] flex items-center border-black rounded-[10px]">
-                <p className="text-xl font-medium text-dark ">January</p>
-                <div className="flex items-center gap-6">
-                  <DownArrowIcon />
-                  <CalendarIcon />
-                </div>
+            <div className="flex flex-col w-full relative">
+              <label
+                htmlFor="from-date"
+                className="text-xl font-normal text-black mb-[10px]"
+              >
+                From
+              </label>
+              <div className="flex relative w-full items-center">
+                <CalendarIcon style="absolute top-1/2 bg-white -translate-y-1/2 right-[25px] pointer-events-none" />
+                <input
+                  required
+                  id="from-date"
+                  className="h-[63px] border outline-none border-dark w-full uppercase text-dark rounded-[10px] py-3.5 px-5 leading-5 text-2xl"
+                  type="date"
+                />
               </div>
             </div>
-            <div className="flex flex-col">
-              <p className="text-xl font-normal text-black mb-[10px]">To</p>
-              <div className="py-3 pl-6 pr-4 border gap-[55px] flex items-center border-black rounded-[10px]">
-                <p className="text-xl font-medium text-dark ">February</p>
-                <div className="flex items-center gap-6">
-                  <DownArrowIcon />
-                  <CalendarIcon />
-                </div>
+            <div className="flex flex-col w-full relative">
+              <label
+                htmlFor="to-date"
+                className="text-xl font-normal text-black mb-[10px]"
+              >
+                To
+              </label>
+              <div className="flex relative w-full items-center">
+                <CalendarIcon style="absolute top-1/2 bg-white -translate-y-1/2 right-[25px] pointer-events-none" />
+                <input
+                  required
+                  id="to-date"
+                  className="h-[63px] border outline-none border-dark w-full uppercase text-dark rounded-[10px] py-3.5 px-5 leading-5 text-2xl"
+                  type="date"
+                />
               </div>
             </div>
           </div>

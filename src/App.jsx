@@ -37,6 +37,7 @@ function App() {
       <ToastContainer />
       <Routes>
         <Route path="/" element={<LoginPage />} />
+        <Route path="/dashboard" element={<Dashboard />} />
         {/* {authenticated ? (
           <Route path="/dashboard" element={<Dashboard />} />
         ) : (
