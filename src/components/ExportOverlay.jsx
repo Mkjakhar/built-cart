@@ -17,11 +17,14 @@ import { exportData } from "./utils/export";
 const ExportOverlay = () => {
   const { showExport, setShowExport, selectExport } = useContext(MyContext);
   const [status, setStatus] = useState("export");
-  const [timeFrame, setTimeFrame] = useState(null);
+  const [timeFrame, setTimeFrame] = useState({
+    from: "",
+    to: "",
+  });
   const [fileType, setFileType] = useState("pdf");
   const handleClick = () => {
     if (status === "export") {
-      exportData(selectExport, fileType, () => {
+      exportData(timeFrame, selectExport, fileType, () => {
         setStatus("exported");
       });
 
@@ -41,6 +44,11 @@ const ExportOverlay = () => {
     setShowExport(!showExport);
     setStatus("export");
   };
+  const handleDateInput = (e) => {
+    const { name, value } = e.target;
+    setTimeFrame({ ...timeFrame, [name]: value });
+  };
+  console.log(timeFrame);
   return (
     <>
       <div
@@ -68,6 +76,9 @@ const ExportOverlay = () => {
                 <CalendarIcon style="absolute top-1/2 bg-white -translate-y-1/2 right-[25px] pointer-events-none" />
                 <input
                   required
+                  name="from"
+                  onChange={handleDateInput}
+                  value={timeFrame.from}
                   id="from-date"
                   className="h-[63px] border outline-none border-dark w-full uppercase text-dark rounded-[10px] py-3.5 px-5 leading-5 text-2xl"
                   type="date"
@@ -85,6 +96,9 @@ const ExportOverlay = () => {
                 <CalendarIcon style="absolute top-1/2 bg-white -translate-y-1/2 right-[25px] pointer-events-none" />
                 <input
                   required
+                  name="to"
+                  value={timeFrame.to}
+                  onChange={handleDateInput}
                   id="to-date"
                   className="h-[63px] border outline-none border-dark w-full uppercase text-dark rounded-[10px] py-3.5 px-5 leading-5 text-2xl"
                   type="date"

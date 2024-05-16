@@ -3,9 +3,9 @@ import * as XLSX from "xlsx";
 import jsPDF from "jspdf";
 import "jspdf-autotable";
 import { toast } from "react-toastify";
-export const exportData = (userData, fileType, afterComplete) => {
-  const startDate = new Date("2024-05-10T00:00:00Z");
-  const endDate = new Date("2024-05-10T23:59:59Z");
+export const exportData = (timeFrame, userData, fileType, afterComplete) => {
+  const startDate = new Date(`${timeFrame.from}T00:00:00Z`);
+  const endDate = new Date(`${timeFrame.to}T23:59:59Z`);
   if (!startDate || !endDate) {
     toast.error("Please select both start and end date.!! Try Again", {
       className: "rounded-[10px]",
